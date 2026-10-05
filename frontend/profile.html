@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile — AgroVision AI</title>
+  <meta name="description" content="Manage your AgroVision AI farmer profile, settings and account details." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🌱</div>
+      <div class="sidebar-logo-text">AgroVision AI<span>Farmer Portal</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html"  class="sidebar-link"><i class="fas fa-gauge-high"></i> Dashboard</a>
+      <a href="detection.html"  class="sidebar-link"><i class="fas fa-leaf"></i> Disease Detection</a>
+      <a href="history.html"    class="sidebar-link"><i class="fas fa-clock-rotate-left"></i> Detection History</a>
+      <div class="sidebar-section-label">Tools</div>
+      <a href="assistant.html"  class="sidebar-link"><i class="fas fa-robot"></i> AI Assistant</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html"    class="sidebar-link active"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="login.html"      class="sidebar-link" style="color:rgba(239,68,68,0.8);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">R</div>
+        <div style="flex:1;min-width:0;">
+          <div class="sidebar-user-name">Rajesh Kumar</div>
+          <div class="sidebar-user-role">Farmer</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="app-main">
+    <!-- Top Nav -->
+    <nav class="app-nav">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-dark);">My Profile</div>
+          <div style="font-size:12px;color:var(--text-muted);">Manage your account details</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <a href="detection.html" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> New Scan</a>
+        <div class="sidebar-avatar" style="cursor:pointer;"><a href="profile.html" style="color:#fff;">R</a></div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-header-title">👨‍🌾 My Profile</h1>
+        <p class="page-header-sub">View and manage your farmer account information.</p>
+      </div>
+
+      <div class="profile-layout">
+        <!-- Profile Card (left) -->
+        <div>
+          <div class="profile-card">
+            <div class="profile-card-header">
+              <div class="profile-avatar-wrap">
+                <div class="profile-avatar">R</div>
+                <div class="profile-avatar-edit" id="avatarEditBtn" title="Change photo">
+                  <i class="fas fa-camera"></i>
+                </div>
+              </div>
+              <div class="profile-name">Rajesh Kumar</div>
+              <div class="profile-email">rajesh@farmer.com</div>
+            </div>
+            <div class="profile-card-body">
+              <div class="profile-stat-row">
+                <div class="profile-stat">
+                  <div class="profile-stat-val">24</div>
+                  <div class="profile-stat-label">Scans</div>
+                </div>
+                <div class="profile-stat">
+                  <div class="profile-stat-val">7</div>
+                  <div class="profile-stat-label">Diseases</div>
+                </div>
+                <div class="profile-stat">
+                  <div class="profile-stat-val">17</div>
+                  <div class="profile-stat-label">Healthy</div>
+                </div>
+              </div>
+              <div class="profile-meta">
+                <div class="profile-meta-item">
+                  <div class="profile-meta-icon"><i class="fas fa-phone"></i></div>
+                  <div>
+                    <div class="profile-meta-text">Phone</div>
+                    <div class="profile-meta-val">+91 98765 43210</div>
+                  </div>
+                </div>
+                <div class="profile-meta-item">
+                  <div class="profile-meta-icon"><i class="fas fa-map-marker-alt"></i></div>
+                  <div>
+                    <div class="profile-meta-text">Location</div>
+                    <div class="profile-meta-val">Pune, Maharashtra</div>
+                  </div>
+                </div>
+                <div class="profile-meta-item">
+                  <div class="profile-meta-icon"><i class="fas fa-seedling"></i></div>
+                  <div>
+                    <div class="profile-meta-text">Farm Size</div>
+                    <div class="profile-meta-val">5 Acres</div>
+                  </div>
+                </div>
+                <div class="profile-meta-item">
+                  <div class="profile-meta-icon"><i class="fas fa-calendar-alt"></i></div>
+                  <div>
+                    <div class="profile-meta-text">Member Since</div>
+                    <div class="profile-meta-val">January 2026</div>
+                  </div>
+                </div>
+              </div>
+              <button class="profile-logout-btn" id="logoutBtn" onclick="window.location.href='login.html'">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Edit Form -->
+        <div>
+          <!-- Personal Info -->
+          <div class="profile-form-card" style="margin-bottom:20px;">
+            <div class="profile-form-title"><i class="fas fa-user" style="color:var(--primary);"></i> Personal Information</div>
+            <form id="profileForm" novalidate>
+              <div class="profile-form-grid" style="margin-bottom:20px;">
+                <div class="form-group">
+                  <label class="form-label" for="profileName">Full Name</label>
+                  <div class="input-wrapper">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" id="profileName" class="form-control" value="Rajesh Kumar" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="profilePhone">Phone Number</label>
+                  <div class="input-wrapper">
+                    <i class="fas fa-phone input-icon"></i>
+                    <input type="tel" id="profilePhone" class="form-control" value="+91 98765 43210" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="profileEmail">Email Address</label>
+                  <div class="input-wrapper">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" id="profileEmail" class="form-control" value="rajesh@farmer.com" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="profileLocation">Location</label>
+                  <div class="input-wrapper">
+                    <i class="fas fa-map-marker-alt input-icon"></i>
+                    <input type="text" id="profileLocation" class="form-control" value="Pune, Maharashtra" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="profileFarmSize">Farm Size (Acres)</label>
+                  <div class="input-wrapper">
+                    <i class="fas fa-seedling input-icon"></i>
+                    <input type="number" id="profileFarmSize" class="form-control" value="5" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="profileCrops">Primary Crops</label>
+                  <div class="input-wrapper">
+                    <i class="fas fa-leaf input-icon"></i>
+                    <input type="text" id="profileCrops" class="form-control" value="Tomato, Wheat, Rice" />
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+            </form>
+          </div>
+
+          <!-- Change Password -->
+          <div class="profile-form-card" style="margin-bottom:20px;">
+            <div class="profile-form-title"><i class="fas fa-lock" style="color:var(--primary);"></i> Change Password</div>
+            <form id="passwordForm" novalidate>
+              <div class="profile-form-section">
+                <div class="profile-form-grid">
+                  <div class="form-group">
+                    <label class="form-label" for="currentPwd">Current Password</label>
+                    <div class="input-wrapper">
+                      <i class="fas fa-lock input-icon"></i>
+                      <input type="password" id="currentPwd" class="form-control" placeholder="Enter current password" />
+                      <button type="button" class="toggle-password"><i class="fas fa-eye"></i></button>
+                    </div>
+                  </div>
+                  <div style=""></div>
+                  <div class="form-group">
+                    <label class="form-label" for="newPwd">New Password</label>
+                    <div class="input-wrapper">
+                      <i class="fas fa-lock input-icon"></i>
+                      <input type="password" id="newPwd" class="form-control" placeholder="Enter new password" />
+                      <button type="button" class="toggle-password"><i class="fas fa-eye"></i></button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="confirmPwd">Confirm New Password</label>
+                    <div class="input-wrapper">
+                      <i class="fas fa-lock input-icon"></i>
+                      <input type="password" id="confirmPwd" class="form-control" placeholder="Repeat new password" />
+                      <button type="button" class="toggle-password"><i class="fas fa-eye"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-outline"><i class="fas fa-key"></i> Update Password</button>
+            </form>
+          </div>
+
+          <!-- Danger Zone -->
+          <div class="profile-form-card">
+            <div class="profile-form-title" style="color:var(--danger);"><i class="fas fa-triangle-exclamation" style="color:var(--danger);"></i> Danger Zone</div>
+            <div class="profile-danger-zone">
+              <div class="profile-danger-title"><i class="fas fa-user-slash"></i> Delete Account</div>
+              <div class="profile-danger-text">Permanently delete your account and all associated data. This action cannot be undone.</div>
+              <button class="btn" style="background:#FEE2E2;color:var(--danger);border:1.5px solid #FECACA;padding:10px 20px;" id="deleteAccountBtn">
+                <i class="fas fa-trash"></i> Delete My Account
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script src="js/api.js"></script>
+<script>
+// Profile page logic with Supabase Auth
+document.addEventListener('DOMContentLoaded', async () => {
+  // Populate user data if authenticated
+  const user = AgroVisionAPI.getUser();
+  if (user) {
+    const name = user.full_name || 'Farmer';
+    const email = user.email || '';
+    const initial = name.charAt(0).toUpperCase();
+
+    document.querySelectorAll('.profile-name, .sidebar-user-name').forEach(el => el.textContent = name);
+    document.querySelectorAll('.profile-email').forEach(el => el.textContent = email);
+    document.querySelectorAll('.profile-avatar, .sidebar-avatar').forEach(el => el.textContent = initial);
+
+    const nameInput = document.getElementById('profileName');
+    if (nameInput) nameInput.value = name;
+    const emailInput = document.getElementById('profileEmail');
+    if (emailInput) emailInput.value = email;
+  }
+
+  // Toggle password visibility
+  document.querySelectorAll('.toggle-password').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const input = this.closest('.input-wrapper').querySelector('input');
+      const isText = input.type === 'text';
+      input.type = isText ? 'password' : 'text';
+      this.innerHTML = isText ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+    });
+  });
+
+  // Profile form submit
+  document.getElementById('profileForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-primary');
+    const newName = document.getElementById('profileName')?.value.trim();
+
+    btn.innerHTML = '<div class="spinner"></div> Saving...';
+    btn.disabled = true;
+
+    try {
+      if (newName && AgroVisionAPI.isAuthenticated()) {
+        const updated = await AgroVisionAPI.request('/api/auth/profile', {
+          method: 'PUT',
+          body: { full_name: newName }
+        });
+        AgroVisionAPI.setUser(updated);
+        document.querySelectorAll('.profile-name, .sidebar-user-name').forEach(el => el.textContent = newName);
+      }
+      showToast('Profile updated successfully!', 'success');
+    } catch (err) {
+      showToast(err.message || 'Failed to update profile', 'error');
+    } finally {
+      btn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+      btn.disabled = false;
+    }
+  });
+
+  // Password form submit
+  document.getElementById('passwordForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const newPwd = document.getElementById('newPwd').value;
+    const confirmPwd = document.getElementById('confirmPwd').value;
+    if (newPwd !== confirmPwd) {
+      showToast('Passwords do not match!', 'error');
+      return;
+    }
+    if (newPwd.length < 8) {
+      showToast('Password must be at least 8 characters', 'warning');
+      return;
+    }
+    const btn = e.target.querySelector('.btn-outline');
+    btn.innerHTML = '<div class="spinner"></div> Updating...';
+    btn.disabled = true;
+
+    try {
+      const user = AgroVisionAPI.getUser();
+      if (user && user.email) {
+        await AgroVisionAPI.forgotPassword(user.email);
+        showToast('Password reset instructions sent to your email!', 'success');
+      } else {
+        showToast('Password reset dispatched!', 'success');
+      }
+      e.target.reset();
+    } catch (err) {
+      showToast(err.message || 'Error updating password', 'error');
+    } finally {
+      btn.innerHTML = '<i class="fas fa-key"></i> Update Password';
+      btn.disabled = false;
+    }
+  });
+
+  // Logout handler
+  document.querySelectorAll('#logoutBtn, a[href="login.html"].sidebar-link').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      await AgroVisionAPI.logout();
+      showToast('Logged out successfully.', 'info');
+      setTimeout(() => { window.location.href = 'login.html'; }, 500);
+    });
+  });
+
+  // Delete account
+  document.getElementById('deleteAccountBtn')?.addEventListener('click', async () => {
+    if (confirm('Are you sure you want to delete your account? This cannot be undone.')) {
+      await AgroVisionAPI.logout();
+      showToast('Account session cleared. You have been logged out.', 'info');
+      setTimeout(() => { window.location.href = 'login.html'; }, 1200);
+    }
+  });
+
+  // Avatar edit (placeholder)
+  document.getElementById('avatarEditBtn')?.addEventListener('click', () => {
+    showToast('Photo upload coming soon!', 'info');
+  });
+});
+</script>
+</body>
+</html>

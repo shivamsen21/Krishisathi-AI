@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — AgroVision AI</title>
+  <meta name="description" content="AgroVision AI administration dashboard — manage farmers, predictions, and analytics." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/history.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app-layout">
+
+  <!-- Admin Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🛡️</div>
+      <div class="sidebar-logo-text">AgroVision AI<span>Admin Panel</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Management</div>
+      <a href="#" class="sidebar-link active" data-tab="dashboard" id="adminNavDashboard">
+        <i class="fas fa-gauge-high"></i> Dashboard
+      </a>
+      <a href="#" class="sidebar-link" data-tab="users" id="adminNavUsers">
+        <i class="fas fa-users"></i> Users
+      </a>
+      <a href="#" class="sidebar-link" data-tab="predictions" id="adminNavPredictions">
+        <i class="fas fa-leaf"></i> Predictions
+      </a>
+      <div class="sidebar-section-label">Analytics</div>
+      <a href="#" class="sidebar-link" data-tab="analytics" id="adminNavAnalytics">
+        <i class="fas fa-chart-bar"></i> Analytics
+      </a>
+      <div class="sidebar-section-label">System</div>
+      <a href="admin-login.html" class="sidebar-link" style="color:rgba(239,68,68,0.8);">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" style="background:var(--gradient-hero);">A</div>
+        <div style="flex:1;min-width:0;">
+          <div class="sidebar-user-name">Admin</div>
+          <div class="sidebar-user-role" style="color:var(--accent);">Super Administrator</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="app-main">
+    <!-- Top Nav -->
+    <nav class="app-nav">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-dark);">Admin Dashboard</div>
+          <div style="font-size:12px;color:var(--text-muted);">System overview &amp; management</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span style="font-size:12px;color:var(--text-muted);">Saturday, Sep 20, 2026</span>
+        <div class="sidebar-avatar" style="background:var(--gradient-hero);font-size:14px;">A</div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-content">
+
+      <!-- ====== TAB: DASHBOARD ====== -->
+      <div id="tab-dashboard" class="tab-panel">
+        <div class="page-header">
+          <h1 class="page-header-title">🛡️ Admin Dashboard</h1>
+          <p class="page-header-sub">Platform-wide overview of farmers, predictions and activity.</p>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="admin-dashboard-grid">
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-users"></i></div>
+            <div class="stat-info">
+              <div class="stat-value" id="statFarmers">—</div>
+              <div class="stat-label">Total Farmers</div>
+              <div class="stat-change up"><i class="fas fa-arrow-up"></i> +48 this month</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#DBEAFE;"><i class="fas fa-leaf" style="color:#1D4ED8;"></i></div>
+            <div class="stat-info">
+              <div class="stat-value" id="statPredictions">—</div>
+              <div class="stat-label">Total Predictions</div>
+              <div class="stat-change up"><i class="fas fa-arrow-up"></i> +312 this week</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon red"><i class="fas fa-virus"></i></div>
+            <div class="stat-info">
+              <div class="stat-value" id="statDiseases">—</div>
+              <div class="stat-label">Diseases Detected</div>
+              <div class="stat-change down"><i class="fas fa-arrow-down"></i> -5% from last month</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-shield-heart"></i></div>
+            <div class="stat-info">
+              <div class="stat-value" id="statHealthy">—</div>
+              <div class="stat-label">Healthy Leaves</div>
+              <div class="stat-change up"><i class="fas fa-arrow-up"></i> 57.6% healthy rate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="admin-charts-row">
+          <!-- Disease Breakdown Donut -->
+          <div class="chart-card">
+            <div class="chart-card-title"><i class="fas fa-chart-pie" style="color:var(--primary);margin-right:8px;"></i>Disease Breakdown</div>
+            <div style="text-align:center;">
+              <div class="donut-placeholder">
+                <div class="donut-center">
+                  <div class="donut-val">5,472</div>
+                  <div class="donut-label">Total</div>
+                </div>
+              </div>
+              <div class="chart-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:var(--primary);"></div>Blight (35%)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--primary-light);"></div>Rust (25%)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--accent);"></div>Mold (15%)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--mint);"></div>Healthy (25%)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weekly Activity Bar Chart -->
+          <div class="chart-card">
+            <div class="chart-card-title"><i class="fas fa-chart-bar" style="color:var(--primary);margin-right:8px;"></i>Weekly Predictions</div>
+            <div class="bar-chart">
+              <div class="bar-group"><div class="bar admin-bar" style="height:0;"></div><div class="bar-label">Mon</div></div>
+              <div class="bar-group"><div class="bar admin-bar" style="height:0;"></div><div class="bar-label">Tue</div></div>
+              <div class="bar-group"><div class="bar admin-bar" style="height:0;"></div><div class="bar-label">Wed</div></div>
+              <div class="bar-group"><div class="bar admin-bar" style="height:0;"></div><div class="bar-label">Thu</div></div>
+              <div class="bar-group"><div class="bar admin-bar" style="height:0;"></div><div class="bar-label">Fri</div></div>
+              <div class="bar-group"><div class="bar admin-bar" style="height:0;"></div><div class="bar-label">Sat</div></div>
+              <div class="bar-group"><div class="bar admin-bar" style="height:0;"></div><div class="bar-label">Sun</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Predictions Summary -->
+        <div class="admin-section">
+          <div class="admin-section-header">
+            <div class="admin-section-title"><i class="fas fa-clock-rotate-left"></i> Recent Predictions</div>
+            <a href="#" class="section-head-link" onclick="switchTab('predictions');return false;">View All <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Farmer</th>
+                  <th>Crop</th>
+                  <th>Disease</th>
+                  <th>Confidence</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="predictionsTableBody">
+                <tr><td colspan="7" style="text-align:center;padding:30px;color:var(--text-muted);">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== TAB: USERS ====== -->
+      <div id="tab-users" class="tab-panel hidden">
+        <div class="page-header">
+          <h1 class="page-header-title">👥 User Management</h1>
+          <p class="page-header-sub">View and manage all registered farmers on the platform.</p>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-header">
+            <div class="admin-section-title"><i class="fas fa-users"></i> All Farmers</div>
+            <div style="display:flex;gap:10px;">
+              <div class="filter-search" style="min-width:240px;">
+                <i class="fas fa-search"></i>
+                <input type="text" id="userSearch" placeholder="Search farmers..." />
+              </div>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Farmer</th>
+                  <th>Scans</th>
+                  <th>Joined</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+                <tr><td colspan="6" style="text-align:center;padding:30px;color:var(--text-muted);">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== TAB: PREDICTIONS ====== -->
+      <div id="tab-predictions" class="tab-panel hidden">
+        <div class="page-header">
+          <h1 class="page-header-title">🔬 Prediction Management</h1>
+          <p class="page-header-sub">All disease predictions made on the platform.</p>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-header">
+            <div class="admin-section-title"><i class="fas fa-leaf"></i> All Predictions</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <select class="filter-select" id="predStatusFilter" style="min-width:130px;">
+                <option value="">All Status</option>
+                <option value="Diseased">Diseased</option>
+                <option value="Healthy">Healthy</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Farmer</th>
+                  <th>Crop</th>
+                  <th>Disease</th>
+                  <th>Confidence</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="allPredictionsBody">
+                <!-- Same as dashboard predictions table -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== TAB: ANALYTICS ====== -->
+      <div id="tab-analytics" class="tab-panel hidden">
+        <div class="page-header">
+          <h1 class="page-header-title">📊 Analytics</h1>
+          <p class="page-header-sub">Platform-wide statistics and trends.</p>
+        </div>
+
+        <div class="admin-charts-row">
+          <div class="chart-card">
+            <div class="chart-card-title"><i class="fas fa-chart-pie" style="color:var(--primary);margin-right:8px;"></i>Crop Distribution</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+              <!-- Crop bars -->
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>🍅 Tomato</span><span style="font-weight:700;color:var(--primary);">38%</span></div>
+                <div class="confidence-bar-track" style="height:8px;"><div class="confidence-bar-fill" style="width:38%;height:100%;border-radius:4px;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>🌾 Wheat</span><span style="font-weight:700;color:var(--primary);">22%</span></div>
+                <div class="confidence-bar-track" style="height:8px;"><div class="confidence-bar-fill" style="width:22%;height:100%;border-radius:4px;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>🥔 Potato</span><span style="font-weight:700;color:var(--primary);">18%</span></div>
+                <div class="confidence-bar-track" style="height:8px;"><div class="confidence-bar-fill" style="width:18%;height:100%;border-radius:4px;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>🌾 Rice</span><span style="font-weight:700;color:var(--primary);">14%</span></div>
+                <div class="confidence-bar-track" style="height:8px;"><div class="confidence-bar-fill" style="width:14%;height:100%;border-radius:4px;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>🌽 Corn</span><span style="font-weight:700;color:var(--primary);">8%</span></div>
+                <div class="confidence-bar-track" style="height:8px;"><div class="confidence-bar-fill" style="width:8%;height:100%;border-radius:4px;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-title"><i class="fas fa-chart-line" style="color:var(--primary);margin-right:8px;"></i>Top Diseases</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Early Blight</span><span style="font-weight:700;color:#EF4444;">1,241</span></div>
+                <div class="confidence-bar-track" style="height:8px;"><div style="height:100%;border-radius:4px;background:#EF4444;width:55%;transition:width 1.2s ease;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Late Blight</span><span style="font-weight:700;color:#F59E0B;">987</span></div>
+                <div class="confidence-bar-track" style="height:8px;"><div style="height:100%;border-radius:4px;background:#F59E0B;width:44%;transition:width 1.2s ease;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Leaf Mold</span><span style="font-weight:700;color:#8B5CF6;">542</span></div>
+                <div class="confidence-bar-track" style="height:8px;"><div style="height:100%;border-radius:4px;background:#8B5CF6;width:24%;transition:width 1.2s ease;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Bacterial Blight</span><span style="font-weight:700;color:#3B82F6;">431</span></div>
+                <div class="confidence-bar-track" style="height:8px;"><div style="height:100%;border-radius:4px;background:#3B82F6;width:19%;transition:width 1.2s ease;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Stripe Rust</span><span style="font-weight:700;color:#10B981;">318</span></div>
+                <div class="confidence-bar-track" style="height:8px;"><div style="height:100%;border-radius:4px;background:#10B981;width:14%;transition:width 1.2s ease;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="admin-section">
+          <div class="admin-section-header">
+            <div class="admin-section-title"><i class="fas fa-info-circle"></i> Platform Summary</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+            <div style="background:var(--bg);border-radius:var(--radius-lg);padding:20px;text-align:center;">
+              <div style="font-size:28px;font-weight:900;color:var(--primary);font-family:var(--font-display);">95.2%</div>
+              <div style="font-size:13px;color:var(--text-muted);">Average AI Accuracy</div>
+            </div>
+            <div style="background:var(--bg);border-radius:var(--radius-lg);padding:20px;text-align:center;">
+              <div style="font-size:28px;font-weight:900;color:var(--primary);font-family:var(--font-display);">1.8s</div>
+              <div style="font-size:13px;color:var(--text-muted);">Avg. Detection Time</div>
+            </div>
+            <div style="background:var(--bg);border-radius:var(--radius-lg);padding:20px;text-align:center;">
+              <div style="font-size:28px;font-weight:900;color:var(--primary);font-family:var(--font-display);">4.8 ⭐</div>
+              <div style="font-size:13px;color:var(--text-muted);">User Satisfaction</div>
+            </div>
+            <div style="background:var(--bg);border-radius:var(--radius-lg);padding:20px;text-align:center;">
+              <div style="font-size:28px;font-weight:900;color:var(--primary);font-family:var(--font-display);">99.9%</div>
+              <div style="font-size:13px;color:var(--text-muted);">System Uptime</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /page-content -->
+  </div><!-- /app-main -->
+</div><!-- /app-layout -->
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+<script>
+// Admin tab navigation
+function switchTab(tabName) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+  document.querySelectorAll('.sidebar-link[data-tab]').forEach(l => l.classList.remove('active'));
+  const panel = document.getElementById('tab-' + tabName);
+  if (panel) panel.classList.remove('hidden');
+  const link = document.querySelector('.sidebar-link[data-tab="' + tabName + '"]');
+  if (link) link.classList.add('active');
+  // Also fill predictions tab
+  if (tabName === 'predictions') fillAllPredictions();
+}
+
+function fillAllPredictions() {
+  const tbody = document.getElementById('allPredictionsBody');
+  if (!tbody || tbody.dataset.filled) return;
+  tbody.dataset.filled = '1';
+  tbody.innerHTML = document.getElementById('predictionsTableBody').innerHTML;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.sidebar-link[data-tab]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab(btn.dataset.tab);
+    });
+  });
+
+  // Search in users tab
+  document.getElementById('userSearch')?.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    document.querySelectorAll('#usersTableBody tr').forEach(row => {
+      row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

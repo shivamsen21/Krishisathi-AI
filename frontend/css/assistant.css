@@ -1,0 +1,71 @@
+﻿/* ============================================================
+   AgroVision AI — AI Assistant Page CSS
+   ============================================================ */
+.assistant-layout { display: grid; grid-template-columns: 280px 1fr; gap: 24px; height: calc(100vh - var(--nav-height) - 64px); }
+
+/* Sidebar panel */
+.chat-sidebar { background: var(--surface); border-radius: var(--radius-xl); border: 1px solid var(--border); padding: 20px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
+.chat-sidebar-title { font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+.suggested-list { display: flex; flex-direction: column; gap: 8px; }
+.suggested-item { padding: 12px 14px; border-radius: var(--radius-lg); border: 1.5px solid var(--border); background: var(--bg); font-size: 13.5px; color: var(--text-body); cursor: pointer; transition: all var(--transition-fast); line-height: 1.5; }
+.suggested-item:hover { border-color: var(--primary-light); background: var(--mint-light); color: var(--primary); }
+.chat-sidebar-divider { border: none; border-top: 1px solid var(--border); }
+.chat-info-block { background: var(--mint-light); border-radius: var(--radius-lg); padding: 14px; }
+.chat-info-title { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+.chat-info-text { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+
+/* Chat main */
+.chat-main { background: var(--surface); border-radius: var(--radius-xl); border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+.chat-header { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.chat-header-info { display: flex; align-items: center; gap: 12px; }
+.chat-bot-avatar { width: 44px; height: 44px; border-radius: var(--radius-full); background: var(--gradient-accent); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; position: relative; }
+.chat-status-dot { position: absolute; bottom: 2px; right: 2px; width: 10px; height: 10px; background: var(--success); border-radius: 50%; border: 2px solid #fff; }
+.chat-bot-name { font-size: 16px; font-weight: 700; color: var(--text-dark); }
+.chat-bot-status { font-size: 12px; color: var(--success); font-weight: 500; }
+.chat-actions { display: flex; gap: 8px; }
+.chat-action-btn { width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--bg); color: var(--text-muted); font-size: 15px; display: flex; align-items: center; justify-content: center; transition: all var(--transition-fast); border: 1.5px solid var(--border); }
+.chat-action-btn:hover { color: var(--primary); background: var(--mint-light); border-color: var(--primary-light); }
+
+/* Messages */
+.chat-messages { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.message { display: flex; gap: 10px; animation: msgSlide 0.3s ease; }
+@keyframes msgSlide { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.message.user { flex-direction: row-reverse; }
+.msg-avatar { width: 36px; height: 36px; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; align-self: flex-end; }
+.msg-avatar.bot { background: var(--gradient-accent); }
+.msg-avatar.user { background: var(--primary-dark); color: #fff; font-size: 14px; font-weight: 700; }
+.msg-bubble { max-width: 70%; padding: 14px 18px; border-radius: 18px; font-size: 14.5px; line-height: 1.65; }
+.message.bot .msg-bubble { background: var(--bg); color: var(--text-body); border-radius: 4px 18px 18px 18px; border: 1px solid var(--border); }
+.message.user .msg-bubble { background: var(--gradient-primary); color: #fff; border-radius: 18px 4px 18px 18px; }
+.msg-time { font-size: 11px; color: var(--text-light); margin-top: 4px; display: block; }
+.message.user .msg-time { text-align: right; color: rgba(255,255,255,0.55); }
+
+/* Typing indicator */
+.typing-indicator { display: flex; align-items: center; gap: 10px; }
+.typing-dots { display: flex; gap: 4px; padding: 12px 16px; background: var(--bg); border-radius: 18px; border: 1px solid var(--border); }
+.typing-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary-light); animation: typeBounce 1.2s ease-in-out infinite; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typeBounce { 0%,80%,100% { transform: scale(0.7); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
+
+/* Input */
+.chat-input-area { padding: 16px 24px; border-top: 1px solid var(--border); flex-shrink: 0; }
+.chat-input-row { display: flex; align-items: flex-end; gap: 10px; }
+.chat-textarea-wrap { flex: 1; position: relative; }
+.chat-textarea {
+  width: 100%; padding: 12px 16px; border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg); font-size: 15px; background: var(--bg);
+  resize: none; max-height: 120px; min-height: 48px; line-height: 1.5;
+  color: var(--text-dark); transition: all var(--transition-fast); display: block;
+}
+.chat-textarea:focus { border-color: var(--primary-light); background: #fff; box-shadow: 0 0 0 3px rgba(82,183,136,0.12); outline: none; }
+.send-btn { width: 48px; height: 48px; border-radius: var(--radius-lg); background: var(--gradient-accent); color: #fff; font-size: 18px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: all var(--transition-base); flex-shrink: 0; }
+.send-btn:hover { transform: translateY(-2px) rotate(-5deg); box-shadow: var(--shadow-lg); }
+.send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.chat-input-hint { font-size: 12px; color: var(--text-light); margin-top: 8px; }
+
+@media (max-width: 900px) {
+  .assistant-layout { grid-template-columns: 1fr; height: auto; }
+  .chat-sidebar { order: 2; }
+  .chat-main { height: 500px; order: 1; }
+}

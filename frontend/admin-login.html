@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — AgroVision AI</title>
+  <meta name="description" content="Secure admin login for AgroVision AI management portal." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="admin-login-body">
+
+<div class="admin-login-card">
+  <!-- Brand -->
+  <div class="admin-login-brand">
+    <div class="admin-login-icon">🛡️</div>
+    <div class="admin-login-name">AgroVision AI</div>
+    <div class="admin-login-badge"><i class="fas fa-shield-halved"></i> Admin Portal</div>
+  </div>
+
+  <div class="admin-login-title">Administrator Login</div>
+  <div class="admin-login-sub">Restricted access. Authorized personnel only.</div>
+
+  <form id="adminLoginForm" novalidate>
+    <div class="form-group">
+      <label class="form-label" for="adminEmail">Admin Email</label>
+      <div class="input-wrapper">
+        <i class="fas fa-envelope input-icon"></i>
+        <input type="email" id="adminEmail" class="form-control" placeholder="admin@agrovision.ai" autocomplete="email" />
+      </div>
+      <span class="form-error"></span>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="adminPassword">Admin Password</label>
+      <div class="input-wrapper">
+        <i class="fas fa-lock input-icon"></i>
+        <input type="password" id="adminPassword" class="form-control" placeholder="Enter admin password" autocomplete="current-password" />
+        <button type="button" class="toggle-password"><i class="fas fa-eye"></i></button>
+      </div>
+      <span class="form-error"></span>
+    </div>
+
+    <button type="submit" class="auth-submit-btn"><i class="fas fa-shield-halved"></i> Secure Login</button>
+  </form>
+
+  <div class="admin-warning">
+    <i class="fas fa-triangle-exclamation"></i>
+    <div class="admin-warning-text">This is a restricted admin area. Unauthorized access attempts are logged and monitored.</div>
+  </div>
+
+  <a href="login.html" class="admin-back-link"><i class="fas fa-arrow-left"></i> Back to Farmer Login</a>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+<script>
+// Password toggle for admin login
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.toggle-password').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const input = this.closest('.input-wrapper').querySelector('input');
+      const isText = input.type === 'text';
+      input.type = isText ? 'password' : 'text';
+      this.innerHTML = isText ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+    });
+  });
+});
+</script>
+</body>
+</html>

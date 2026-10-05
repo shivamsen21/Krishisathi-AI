@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Assistant — AgroVision AI</title>
+  <meta name="description" content="Ask farming questions and get instant AI-powered advice from Krishi AI Assistant." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/assistant.css" />
+</head>
+<body>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🌱</div>
+      <div class="sidebar-logo-text">AgroVision AI<span>Farmer Portal</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html"  class="sidebar-link"><i class="fas fa-gauge-high"></i> Dashboard</a>
+      <a href="detection.html"  class="sidebar-link"><i class="fas fa-leaf"></i> Disease Detection</a>
+      <a href="history.html"    class="sidebar-link"><i class="fas fa-clock-rotate-left"></i> Detection History</a>
+      <div class="sidebar-section-label">Tools</div>
+      <a href="assistant.html"  class="sidebar-link active"><i class="fas fa-robot"></i> AI Assistant</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html"    class="sidebar-link"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="login.html"      class="sidebar-link" style="color:rgba(239,68,68,0.8);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">R</div>
+        <div style="flex:1;min-width:0;">
+          <div class="sidebar-user-name">Rajesh Kumar</div>
+          <div class="sidebar-user-role">Farmer</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="app-main">
+    <!-- Top Nav -->
+    <nav class="app-nav">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-dark);">🌱 Krishi AI Assistant</div>
+          <div style="font-size:12px;color:var(--text-muted);">Ask anything about farming</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <a href="detection.html" class="btn btn-primary btn-sm"><i class="fas fa-leaf"></i> Detect Disease</a>
+        <div class="sidebar-avatar" style="cursor:pointer;"><a href="profile.html" style="color:#fff;">R</a></div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <div class="assistant-layout">
+
+        <!-- Left Sidebar: Suggested Questions -->
+        <div class="chat-sidebar">
+          <div>
+            <div class="chat-sidebar-title">🌾 Krishi AI Assistant</div>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.5;margin-top:4px;">Your 24/7 agricultural advisor powered by AI.</p>
+          </div>
+
+          <hr class="chat-sidebar-divider" />
+
+          <div>
+            <div class="chat-sidebar-title" style="font-size:13px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);">💬 Suggested Questions</div>
+            <div class="suggested-list" id="suggestedList">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+
+          <hr class="chat-sidebar-divider" />
+
+          <div class="chat-info-block">
+            <div class="chat-info-title"><i class="fas fa-info-circle"></i> How it works</div>
+            <div class="chat-info-text">Type your farming question and Krishi AI will give you expert advice on crop diseases, irrigation, soil health and more.</div>
+          </div>
+
+          <div class="chat-info-block" style="background:#FEF3C7;">
+            <div class="chat-info-title" style="color:#92400E;"><i class="fas fa-leaf"></i> Pro Tip</div>
+            <div class="chat-info-text" style="color:#78350F;">For precise disease identification, upload a leaf photo to the <a href="detection.html" style="color:var(--primary);font-weight:600;">AI Detection</a> tool.</div>
+          </div>
+        </div>
+
+        <!-- Chat Main Area -->
+        <div class="chat-main">
+          <!-- Chat Header -->
+          <div class="chat-header">
+            <div class="chat-header-info">
+              <div class="chat-bot-avatar">
+                🌱
+                <div class="chat-status-dot"></div>
+              </div>
+              <div>
+                <div class="chat-bot-name">Krishi AI</div>
+                <div class="chat-bot-status"><i class="fas fa-circle" style="font-size:8px;"></i> Online · Ready to help</div>
+              </div>
+            </div>
+            <div class="chat-actions">
+              <button class="chat-action-btn" id="clearChatBtn" title="Clear chat">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Messages Area -->
+          <div class="chat-messages" id="chatMessages">
+            <!-- Messages injected by JS -->
+          </div>
+
+          <!-- Input Area -->
+          <div class="chat-input-area">
+            <div class="chat-input-row">
+              <div class="chat-textarea-wrap">
+                <textarea
+                  id="chatInput"
+                  class="chat-textarea"
+                  placeholder="Ask about crop diseases, watering, soil health..."
+                  rows="1"
+                ></textarea>
+              </div>
+              <button class="send-btn" id="sendBtn" title="Send message">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+            <div class="chat-input-hint">
+              <i class="fas fa-keyboard" style="margin-right:4px;"></i>Press <kbd style="background:var(--border);padding:1px 5px;border-radius:3px;font-size:11px;">Enter</kbd> to send · <kbd style="background:var(--border);padding:1px 5px;border-radius:3px;font-size:11px;">Shift+Enter</kbd> for new line
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script src="js/api.js"></script>
+<script src="js/assistant.js"></script>
+</body>
+</html>

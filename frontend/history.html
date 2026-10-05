@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detection History — AgroVision AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/history.css" />
+</head>
+<body>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🌱</div>
+      <div class="sidebar-logo-text">AgroVision AI<span>Farmer Portal</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html"  class="sidebar-link"><i class="fas fa-gauge-high"></i> Dashboard</a>
+      <a href="detection.html"  class="sidebar-link"><i class="fas fa-leaf"></i> Disease Detection</a>
+      <a href="history.html"    class="sidebar-link active"><i class="fas fa-clock-rotate-left"></i> Detection History</a>
+      <div class="sidebar-section-label">Tools</div>
+      <a href="assistant.html"  class="sidebar-link"><i class="fas fa-robot"></i> AI Assistant</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html"    class="sidebar-link"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="login.html"      class="sidebar-link" style="color:rgba(239,68,68,0.8);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">R</div>
+        <div style="flex:1;min-width:0;">
+          <div class="sidebar-user-name">Rajesh Kumar</div>
+          <div class="sidebar-user-role">Farmer</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="app-main">
+    <nav class="app-nav">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-dark);">Detection History</div>
+          <div style="font-size:12px;color:var(--text-muted);">All your past disease detections</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <a href="detection.html" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> New Scan</a>
+        <div class="sidebar-avatar"><a href="profile.html" style="color:#fff;">R</a></div>
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-header-title">📋 Detection History</h1>
+        <p class="page-header-sub">View, search and filter all your previous crop disease detections.</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="history-filters">
+        <div class="filter-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search by crop or disease..." />
+        </div>
+        <select class="filter-select" id="cropFilter">
+          <option value="">All Crops</option>
+          <option value="Tomato">🍅 Tomato</option>
+          <option value="Wheat">🌾 Wheat</option>
+          <option value="Potato">🥔 Potato</option>
+          <option value="Rice">🌾 Rice</option>
+          <option value="Corn">🌽 Corn</option>
+        </select>
+        <select class="filter-select" id="statusFilter">
+          <option value="">All Status</option>
+          <option value="Diseased">Diseased</option>
+          <option value="Healthy">Healthy</option>
+        </select>
+        <input type="month" class="filter-select" id="dateFilter" style="min-width:140px;" />
+        <button class="filter-reset" id="resetFilters"><i class="fas fa-rotate-left"></i> Reset</button>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="history-action-bar">
+        <div class="history-count" id="historyCount">Showing <strong>0</strong> detections</div>
+        <a href="detection.html" class="btn btn-primary btn-sm"><i class="fas fa-camera"></i> New Detection</a>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Crop</th>
+              <th>Disease</th>
+              <th>Confidence</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <tr><td colspan="6" style="text-align:center;padding:40px;color:var(--text-muted);">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="detail-modal hidden" id="detailModal">
+  <div class="detail-modal-inner">
+    <div class="detail-modal-header">
+      <div class="detail-modal-title"><i class="fas fa-microscope"></i> Detection Details</div>
+      <button class="modal-close" id="closeModal"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="detail-modal-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+        <div style="background:var(--bg);border-radius:var(--radius-lg);padding:14px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Crop</div>
+          <div style="font-size:17px;font-weight:800;color:var(--text-dark);" id="modalCrop">—</div>
+        </div>
+        <div style="background:var(--bg);border-radius:var(--radius-lg);padding:14px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Date</div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-dark);" id="modalDate">—</div>
+        </div>
+      </div>
+      <div style="background:var(--bg);border-radius:var(--radius-lg);padding:14px;margin-bottom:16px;">
+        <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Detected Disease</div>
+        <div style="font-size:18px;font-weight:800;color:var(--text-dark);" id="modalDisease">—</div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:13px;font-weight:700;color:var(--text-dark);">AI Confidence</span>
+          <span style="font-size:18px;font-weight:900;color:var(--primary);" id="modalConfidence">—</span>
+        </div>
+        <div class="confidence-bar-track"><div class="confidence-bar-fill" id="modalConfBar" style="width:0%;"></div></div>
+      </div>
+      <div style="margin-bottom:16px;" id="modalStatus"></div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="background:var(--bg);border-left:4px solid var(--primary-light);border-radius:var(--radius-lg);padding:14px;">
+          <div style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:8px;"><i class="fas fa-eye"></i> Symptoms</div>
+          <div style="font-size:14px;color:var(--text-body);line-height:1.65;" id="modalSymptoms">—</div>
+        </div>
+        <div style="background:var(--bg);border-left:4px solid var(--warning);border-radius:var(--radius-lg);padding:14px;">
+          <div style="font-size:13px;font-weight:700;color:#92400E;margin-bottom:8px;"><i class="fas fa-shield"></i> Prevention</div>
+          <div style="font-size:14px;color:var(--text-body);line-height:1.65;" id="modalPrevention">—</div>
+        </div>
+        <div style="background:var(--bg);border-left:4px solid var(--success);border-radius:var(--radius-lg);padding:14px;">
+          <div style="font-size:13px;font-weight:700;color:#065F46;margin-bottom:8px;"><i class="fas fa-kit-medical"></i> Recommended Care</div>
+          <div style="font-size:14px;color:var(--text-body);line-height:1.65;" id="modalCare">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script src="js/api.js"></script>
+<script src="js/history.js"></script>
+</body>
+</html>

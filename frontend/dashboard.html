@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — AgroVision AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🌱</div>
+      <div class="sidebar-logo-text">AgroVision AI<span>Farmer Portal</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html"  class="sidebar-link" id="nav-dashboard"><i class="fas fa-gauge-high"></i> Dashboard</a>
+      <a href="detection.html"  class="sidebar-link" id="nav-detection"><i class="fas fa-leaf"></i> Disease Detection</a>
+      <a href="history.html"    class="sidebar-link" id="nav-history"><i class="fas fa-clock-rotate-left"></i> Detection History</a>
+      <div class="sidebar-section-label">Tools</div>
+      <a href="assistant.html"  class="sidebar-link" id="nav-assistant"><i class="fas fa-robot"></i> AI Assistant</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html"    class="sidebar-link" id="nav-profile"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="login.html"      class="sidebar-link" style="color:rgba(239,68,68,0.8);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">R</div>
+        <div style="flex:1;min-width:0;">
+          <div class="sidebar-user-name">Rajesh Kumar</div>
+          <div class="sidebar-user-role">Farmer</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="app-main">
+    <!-- Top Nav -->
+    <nav class="app-nav">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-dark);">Dashboard</div>
+          <div style="font-size:12px;color:var(--text-muted);">Thursday, Sep 18, 2026</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <a href="detection.html" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> New Scan</a>
+        <div class="sidebar-avatar" style="cursor:pointer;" title="Profile"><a href="profile.html" style="color:#fff;font-size:15px;font-weight:700;">R</a></div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="page-content">
+      <!-- Welcome Banner -->
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <div class="welcome-greeting">Good evening 🌙</div>
+          <div class="welcome-name">Welcome back, Rajesh! 👋</div>
+          <div class="welcome-sub">Your crops are being monitored. Last scan was 2 days ago.</div>
+        </div>
+        <div class="welcome-cta">
+          <a href="detection.html" class="welcome-scan-btn"><i class="fas fa-camera"></i> Scan Your Crop</a>
+        </div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="dashboard-grid">
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fas fa-leaf"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" id="statScans">—</div>
+            <div class="stat-label">Total Scans</div>
+            <div class="stat-change up"><i class="fas fa-arrow-up"></i> +3 this week</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red"><i class="fas fa-virus"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" id="statDiseases">—</div>
+            <div class="stat-label">Diseases Detected</div>
+            <div class="stat-change down"><i class="fas fa-arrow-down"></i> -1 from last month</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fas fa-shield-heart"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" id="statHealthy">—</div>
+            <div class="stat-label">Healthy Crops</div>
+            <div class="stat-change up"><i class="fas fa-arrow-up"></i> 71% healthy rate</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" id="statLast">—</div>
+            <div class="stat-label">Last Detection</div>
+            <div class="stat-change" style="color:var(--text-muted);">Sep 17, 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Grid -->
+      <div class="dashboard-bottom">
+        <!-- Recent Detections -->
+        <div class="recent-section">
+          <div class="section-header">
+            <div class="section-head-title"><i class="fas fa-clock-rotate-left" style="color:var(--primary);margin-right:8px;"></i>Recent Detections</div>
+            <a href="history.html" class="section-head-link">View All <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div id="recentDetections">
+            <div style="text-align:center;padding:40px;color:var(--text-muted);">Loading...</div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions-section">
+          <div class="section-header">
+            <div class="section-head-title"><i class="fas fa-bolt" style="color:var(--primary);margin-right:8px;"></i>Quick Actions</div>
+          </div>
+          <div class="quick-actions-grid">
+            <a href="detection.html" class="quick-action-btn">
+              <div class="quick-action-icon" style="background:var(--mint-light);"><i class="fas fa-camera" style="color:var(--primary);"></i></div>
+              New Detection
+            </a>
+            <a href="assistant.html" class="quick-action-btn">
+              <div class="quick-action-icon" style="background:#DBEAFE;"><i class="fas fa-robot" style="color:#1D4ED8;"></i></div>
+              AI Assistant
+            </a>
+            <a href="history.html" class="quick-action-btn">
+              <div class="quick-action-icon" style="background:#FEF3C7;"><i class="fas fa-history" style="color:#92400E;"></i></div>
+              View History
+            </a>
+            <a href="profile.html" class="quick-action-btn">
+              <div class="quick-action-icon" style="background:#FEE2E2;"><i class="fas fa-user" style="color:#991B1B;"></i></div>
+              My Profile
+            </a>
+          </div>
+          <!-- Mini Activity Chart -->
+          <div style="margin-top:20px;">
+            <div style="font-size:14px;font-weight:700;color:var(--text-dark);margin-bottom:12px;">Weekly Activity</div>
+            <div class="chart-placeholder">
+              <div class="chart-bars">
+                <div class="chart-bar" style="height:0;"></div>
+                <div class="chart-bar" style="height:0;"></div>
+                <div class="chart-bar" style="height:0;"></div>
+                <div class="chart-bar" style="height:0;"></div>
+                <div class="chart-bar" style="height:0;"></div>
+                <div class="chart-bar" style="height:0;"></div>
+                <div class="chart-bar" style="height:0;"></div>
+              </div>
+              <div style="display:flex;justify-content:center;gap:12px;font-size:11px;color:var(--text-muted);">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast-container"></div>
+<script>
+  // Set active link
+  document.getElementById('nav-dashboard')?.classList.add('active');
+</script>
+<script src="js/main.js"></script>
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

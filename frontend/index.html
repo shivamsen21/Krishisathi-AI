@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroVision AI — Smart Crop Protection Powered by AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">🌱</div>
+      <div class="nav-logo-text">AgroVision AI<span>Smart Crop Protection</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#home"     class="nav-link">Home</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#how"      class="nav-link">How It Works</a>
+      <a href="assistant.html" class="nav-link">AI Assistant</a>
+    </div>
+    <div class="nav-cta">
+      <a href="login.html"     class="nav-btn-login">Login</a>
+      <a href="detection.html" class="nav-btn-primary"><i class="fas fa-leaf"></i> Detect Disease</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home"     class="nav-link">Home</a>
+  <a href="#features" class="nav-link">Features</a>
+  <a href="#how"      class="nav-link">How It Works</a>
+  <a href="assistant.html" class="nav-link">AI Assistant</a>
+  <div class="mobile-menu-cta">
+    <a href="login.html"     class="btn btn-outline btn-full">Login</a>
+    <a href="detection.html" class="btn btn-primary btn-full"><i class="fas fa-leaf"></i> Detect Disease</a>
+  </div>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <!-- Left Content -->
+    <div class="hero-content">
+      <div class="hero-tag"><i class="fas fa-circle-dot"></i> AI-Powered Agriculture</div>
+      <h1 class="hero-title">Protect Your <span>Crops</span> with AI</h1>
+      <p class="hero-subtitle">Detect crop diseases from leaf images using AI-powered image classification. Get instant diagnosis and treatment guidance in seconds.</p>
+      <div class="hero-actions">
+        <a href="detection.html" class="hero-btn-primary"><i class="fas fa-search"></i> Detect Disease Now</a>
+        <a href="#features"      class="hero-btn-outline"><i class="fas fa-compass"></i> Explore Features</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-value">95%+</div><div class="hero-stat-label">Accuracy</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">20+</div><div class="hero-stat-label">Diseases Detected</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">5k+</div><div class="hero-stat-label">Farmers Helped</div></div>
+      </div>
+    </div>
+    <!-- Right Visual -->
+    <div class="hero-visual">
+      <div class="leaf-container">
+        <div class="leaf-bg-ring"></div>
+        <div class="leaf-bg-ring"></div>
+        <div class="leaf-card">
+          <div class="leaf-emoji">🍃</div>
+          <div class="scan-line"></div>
+          <div class="scan-corners">
+            <div class="scan-corner tl"></div>
+            <div class="scan-corner tr"></div>
+            <div class="scan-corner bl"></div>
+            <div class="scan-corner br"></div>
+          </div>
+        </div>
+        <!-- AI Badges -->
+        <div class="ai-badge badge-top-left">
+          <div class="ai-badge-icon" style="background:#D1FAE5;"><i class="fas fa-shield-heart" style="color:#065F46;"></i></div>
+          <div class="ai-badge-text">
+            <div class="ai-badge-label">Disease Status</div>
+            <div class="ai-badge-value" style="color:#065F46;">✓ Healthy</div>
+          </div>
+        </div>
+        <div class="ai-badge badge-bottom-right">
+          <div class="ai-badge-icon" style="background:#DBEAFE;"><i class="fas fa-brain" style="color:#1D4ED8;"></i></div>
+          <div class="ai-badge-text">
+            <div class="ai-badge-label">AI Confidence</div>
+            <div class="ai-badge-value">94.7%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== HOW IT WORKS ====== -->
+<section class="how-section section-padding" id="how">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag"><i class="fas fa-route"></i> Process</div>
+      <h2 class="section-title">How AgroVision AI Works</h2>
+      <p class="section-subtitle" style="margin:0 auto;">From leaf image to actionable guidance in four simple steps.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card animate-on-scroll">
+        <div class="step-number">01</div>
+        <div class="step-icon">📷</div>
+        <h3 class="step-title">Upload Leaf</h3>
+        <p class="step-desc">Upload or capture a clear photo of your crop leaf directly from your phone or computer.</p>
+      </div>
+      <div class="step-card animate-on-scroll">
+        <div class="step-number">02</div>
+        <div class="step-icon">🤖</div>
+        <h3 class="step-title">AI Analysis</h3>
+        <p class="step-desc">Our deep learning model analyzes visual patterns and features in the leaf image.</p>
+      </div>
+      <div class="step-card animate-on-scroll">
+        <div class="step-number">03</div>
+        <div class="step-icon">🔬</div>
+        <h3 class="step-title">Disease Detection</h3>
+        <p class="step-desc">The system identifies the probable disease with a confidence score and severity level.</p>
+      </div>
+      <div class="step-card animate-on-scroll">
+        <div class="step-number">04</div>
+        <div class="step-icon">💊</div>
+        <h3 class="step-title">Get Guidance</h3>
+        <p class="step-desc">View disease information, prevention tips, and recommended treatment options instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FEATURES ====== -->
+<section class="features-section section-padding" id="features">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag"><i class="fas fa-star"></i> Features</div>
+      <h2 class="section-title">Everything You Need to Protect Your Farm</h2>
+      <p class="section-subtitle" style="margin:0 auto;">Powerful AI tools designed specifically for farmers.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-magnifying-glass"></i></div>
+        <h3 class="feature-title">AI Disease Detection</h3>
+        <p class="feature-desc">Instantly detect crop diseases from leaf images using our trained deep learning model with 95%+ accuracy.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
+        <h3 class="feature-title">Confidence Score</h3>
+        <p class="feature-desc">See exactly how confident the AI is about its prediction with a detailed confidence percentage and bar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+        <h3 class="feature-title">Farmer AI Assistant</h3>
+        <p class="feature-desc">Ask agricultural questions in simple language. Get expert farming advice powered by AI, 24/7.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-clock-rotate-left"></i></div>
+        <h3 class="feature-title">Detection History</h3>
+        <p class="feature-desc">View and track all your previous disease detections with detailed reports and trends over time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-book-medical"></i></div>
+        <h3 class="feature-title">Disease Information</h3>
+        <p class="feature-desc">Understand symptoms, causes, prevention strategies, and recommended care for any detected disease.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-gauge-high"></i></div>
+        <h3 class="feature-title">Farmer Dashboard</h3>
+        <p class="feature-desc">Manage all your farming activities, view scan statistics, and monitor crop health from one central place.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CTA ====== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="section-tag" style="background:rgba(82,183,136,0.15);color:#B7E4C7;display:inline-flex;"><i class="fas fa-leaf"></i> Get Started</div>
+      <h2 class="cta-title">Ready to Protect Your Crops?</h2>
+      <p class="cta-sub">Join thousands of farmers using AI to detect diseases early and save their harvest.</p>
+      <div class="cta-actions">
+        <a href="register.html" class="hero-btn-primary"><i class="fas fa-user-plus"></i> Create Free Account</a>
+        <a href="detection.html" class="hero-btn-outline"><i class="fas fa-search"></i> Try Detection Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <div class="nav-logo-icon" style="width:34px;height:34px;font-size:16px;">🌱</div>
+          <span class="footer-brand-name">AgroVision AI</span>
+        </div>
+        <p class="footer-tagline">Smart Crop Protection Powered by AI. Helping farmers detect diseases early and protect their harvest.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Product</div>
+        <a href="detection.html" class="footer-link">Disease Detection</a>
+        <a href="assistant.html" class="footer-link">AI Assistant</a>
+        <a href="dashboard.html" class="footer-link">Dashboard</a>
+        <a href="history.html"   class="footer-link">History</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Account</div>
+        <a href="login.html"           class="footer-link">Login</a>
+        <a href="register.html"        class="footer-link">Register</a>
+        <a href="forgot-password.html" class="footer-link">Reset Password</a>
+        <a href="profile.html"         class="footer-link">Profile</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Support</div>
+        <a href="#" class="footer-link">Help Center</a>
+        <a href="#" class="footer-link">Contact Us</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 AgroVision AI. All rights reserved.</p>
+      <p class="footer-copy">Made with ❤️ for farmers</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

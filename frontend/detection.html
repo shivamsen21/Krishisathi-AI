@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disease Detection — AgroVision AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/detection.css" />
+</head>
+<body>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🌱</div>
+      <div class="sidebar-logo-text">AgroVision AI<span>Farmer Portal</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html"  class="sidebar-link"><i class="fas fa-gauge-high"></i> Dashboard</a>
+      <a href="detection.html"  class="sidebar-link active"><i class="fas fa-leaf"></i> Disease Detection</a>
+      <a href="history.html"    class="sidebar-link"><i class="fas fa-clock-rotate-left"></i> Detection History</a>
+      <div class="sidebar-section-label">Tools</div>
+      <a href="assistant.html"  class="sidebar-link"><i class="fas fa-robot"></i> AI Assistant</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html"    class="sidebar-link"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="login.html"      class="sidebar-link" style="color:rgba(239,68,68,0.8);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">R</div>
+        <div style="flex:1;min-width:0;">
+          <div class="sidebar-user-name">Rajesh Kumar</div>
+          <div class="sidebar-user-role">Farmer</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="app-main">
+    <nav class="app-nav">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-dark);">AI Crop Disease Detection</div>
+          <div style="font-size:12px;color:var(--text-muted);">Upload a leaf image to detect diseases</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <a href="history.html" class="btn btn-ghost btn-sm"><i class="fas fa-history"></i> History</a>
+        <div class="sidebar-avatar" style="cursor:pointer;"><a href="profile.html" style="color:#fff;">R</a></div>
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-header-title">🔬 AI Crop Disease Detection</h1>
+        <p class="page-header-sub">Upload a clear image of the affected crop leaf for instant AI analysis.</p>
+      </div>
+
+      <div class="detection-layout">
+        <!-- Upload Panel -->
+        <div>
+          <!-- Upload Zone -->
+          <div class="card" style="margin-bottom:20px;padding:0;overflow:hidden;">
+            <div style="padding:16px 20px;border-bottom:1px solid var(--border);background:var(--bg);">
+              <div style="font-size:16px;font-weight:700;color:var(--text-dark);">📷 Upload Leaf Image</div>
+              <div style="font-size:13px;color:var(--text-muted);margin-top:3px;">Drag & drop or browse for best results</div>
+            </div>
+            <div style="padding:20px;">
+              <div class="upload-zone" id="uploadZone">
+                <!-- Upload Prompt -->
+                <div id="uploadPrompt">
+                  <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                  <h3 class="upload-title">Drag & Drop Leaf Image</h3>
+                  <p class="upload-sub">Drop your crop leaf photo here for AI analysis</p>
+                  <div class="upload-btn-group">
+                    <label for="fileInput" class="upload-btn upload-btn-primary" style="cursor:pointer;">
+                      <i class="fas fa-folder-open"></i> Browse Image
+                    </label>
+                    <button class="upload-btn upload-btn-camera" id="cameraBtn">
+                      <i class="fas fa-camera"></i> Use Camera
+                    </button>
+                  </div>
+                  <p class="upload-formats">Supports: <span>JPG, PNG, WEBP</span> up to 10MB</p>
+                </div>
+                <input type="file" id="fileInput" accept="image/*" class="hidden" />
+
+                <!-- Preview Section -->
+                <div id="previewSection" class="hidden">
+                  <div class="preview-container">
+                    <img id="previewImage" class="preview-image" src="" alt="Leaf preview" />
+                    <div class="preview-overlay">
+                      <div class="preview-actions">
+                        <button class="preview-action-btn preview-remove" onclick="removeImage()"><i class="fas fa-trash"></i> Remove</button>
+                        <label for="fileInput" class="preview-action-btn preview-change" style="cursor:pointer;"><i class="fas fa-exchange-alt"></i> Change</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Crop Selector -->
+          <div class="crop-selector">
+            <div class="crop-selector-label"><i class="fas fa-seedling" style="color:var(--primary);margin-right:6px;"></i>Select Crop Type <span style="color:var(--text-light);font-weight:400;">(optional)</span></div>
+            <div class="crop-chips">
+              <div class="crop-chip" data-crop="Tomato">🍅 Tomato</div>
+              <div class="crop-chip" data-crop="Potato">🥔 Potato</div>
+              <div class="crop-chip" data-crop="Wheat">🌾 Wheat</div>
+              <div class="crop-chip" data-crop="Rice">🌾 Rice</div>
+              <div class="crop-chip" data-crop="Corn">🌽 Corn</div>
+              <div class="crop-chip" data-crop="Cotton">🌿 Cotton</div>
+              <div class="crop-chip" data-crop="Mango">🥭 Mango</div>
+              <div class="crop-chip" data-crop="Other">🌱 Other</div>
+            </div>
+          </div>
+
+          <!-- Analyze Button -->
+          <div class="analyze-section">
+            <button class="analyze-btn" id="analyzeBtn" disabled>
+              <i class="fas fa-search"></i> Analyze with AI
+            </button>
+            <p style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:10px;">
+              <i class="fas fa-shield-halved" style="color:var(--primary-light);"></i>
+              Your image is processed securely and not stored permanently
+            </p>
+          </div>
+        </div>
+
+        <!-- Result Panel -->
+        <div>
+          <!-- No result placeholder -->
+          <div id="noResult" class="card" style="text-align:center;padding:60px 32px;">
+            <div style="font-size:72px;margin-bottom:20px;">🔬</div>
+            <h3 style="font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:10px;">Ready to Analyze</h3>
+            <p style="color:var(--text-muted);font-size:15px;max-width:280px;margin:0 auto 24px;line-height:1.65;">Upload a crop leaf image and click "Analyze with AI" to detect diseases.</p>
+            <div style="display:flex;flex-direction:column;gap:10px;text-align:left;background:var(--bg);border-radius:var(--radius-lg);padding:16px;">
+              <div style="font-size:13px;font-weight:700;color:var(--text-dark);margin-bottom:6px;">📌 Tips for best results:</div>
+              <div style="font-size:13px;color:var(--text-muted);"><i class="fas fa-check" style="color:var(--success);margin-right:6px;"></i>Use good natural lighting</div>
+              <div style="font-size:13px;color:var(--text-muted);"><i class="fas fa-check" style="color:var(--success);margin-right:6px;"></i>Focus on the affected area of the leaf</div>
+              <div style="font-size:13px;color:var(--text-muted);"><i class="fas fa-check" style="color:var(--success);margin-right:6px;"></i>Capture one leaf per image</div>
+              <div style="font-size:13px;color:var(--text-muted);"><i class="fas fa-check" style="color:var(--success);margin-right:6px;"></i>Avoid blurry or dark images</div>
+            </div>
+          </div>
+
+          <!-- Result Panel (hidden until analysis) -->
+          <div id="resultPanel" class="result-panel hidden">
+            <div class="result-header">
+              <div>
+                <div class="result-header-label">AI Analysis Complete</div>
+                <div class="result-header-title">Detection Result</div>
+              </div>
+              <span class="result-ai-badge"><i class="fas fa-robot"></i> AI Powered</span>
+            </div>
+            <div class="result-body">
+              <!-- Meta Grid -->
+              <div class="result-meta-grid">
+                <div class="result-meta-item">
+                  <div class="result-meta-label">Crop</div>
+                  <div class="result-meta-value" id="resultCrop">—</div>
+                </div>
+                <div class="result-meta-item">
+                  <div class="result-meta-label">Status</div>
+                  <div id="resultStatus"><span class="badge badge-danger">Diseased</span></div>
+                </div>
+              </div>
+              <div class="result-meta-item" style="margin-bottom:20px;background:var(--bg);border-radius:var(--radius-lg);padding:16px;">
+                <div class="result-meta-label">Detected Disease</div>
+                <div class="result-meta-value" id="resultDisease" style="margin-top:6px;">—</div>
+              </div>
+
+              <!-- Confidence -->
+              <div class="result-confidence">
+                <div class="confidence-header">
+                  <span class="confidence-label">AI Confidence</span>
+                  <span class="confidence-pct" id="resultConfidence">—</span>
+                </div>
+                <div class="confidence-bar-track">
+                  <div class="confidence-bar-fill" id="confidenceBar" style="width:0%;"></div>
+                </div>
+              </div>
+
+              <!-- Disease Info -->
+              <div class="result-info">
+                <div class="result-info-item">
+                  <div class="result-info-title"><i class="fas fa-eye"></i> Symptoms</div>
+                  <div class="result-info-text" id="resultSymptoms">—</div>
+                </div>
+                <div class="result-info-item warning">
+                  <div class="result-info-title"><i class="fas fa-shield"></i> Prevention</div>
+                  <div class="result-info-text" id="resultPrevention">—</div>
+                </div>
+                <div class="result-info-item success">
+                  <div class="result-info-title"><i class="fas fa-kit-medical"></i> Recommended Care</div>
+                  <div class="result-info-text" id="resultCare">—</div>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="result-actions">
+                <button class="btn btn-primary btn-sm" id="saveResultBtn"><i class="fas fa-save"></i> Save to History</button>
+                <a href="assistant.html" class="btn btn-outline btn-sm"><i class="fas fa-robot"></i> Ask AI Assistant</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scanning Overlay -->
+<div class="scanning-overlay hidden" id="scanningOverlay">
+  <div class="scanning-card">
+    <div class="scan-pulse-ring">
+      <div class="scan-pulse-inner">🍃</div>
+    </div>
+    <div class="scan-label">AgroVision AI</div>
+    <div class="scan-title">Analyzing Leaf...</div>
+    <div class="scan-steps">
+      <div class="scan-step" id="step1">
+        <div class="scan-step-icon pending"><i class="far fa-circle"></i></div>
+        <div class="scan-step-text">Uploading leaf image...</div>
+      </div>
+      <div class="scan-step" id="step2">
+        <div class="scan-step-icon pending"><i class="far fa-circle"></i></div>
+        <div class="scan-step-text">Extracting visual features...</div>
+      </div>
+      <div class="scan-step" id="step3">
+        <div class="scan-step-icon pending"><i class="far fa-circle"></i></div>
+        <div class="scan-step-text">Running AI classification...</div>
+      </div>
+      <div class="scan-step" id="step4">
+        <div class="scan-step-icon pending"><i class="far fa-circle"></i></div>
+        <div class="scan-step-text">Generating disease report...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Camera Modal -->
+<div class="camera-modal hidden" id="cameraModal">
+  <div class="camera-inner">
+    <div class="camera-header">
+      <div class="camera-title"><i class="fas fa-camera"></i> Capture Leaf Image</div>
+      <button class="camera-close" id="closeCamera"><i class="fas fa-times"></i></button>
+    </div>
+    <video class="camera-video" id="cameraVideo" autoplay playsinline></video>
+    <div class="camera-actions">
+      <button class="capture-btn" id="captureBtn">📷</button>
+    </div>
+    <p style="text-align:center;color:rgba(255,255,255,0.5);font-size:12px;margin-top:10px;">Position the leaf clearly in frame, then tap capture</p>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script src="js/api.js"></script>
+<script src="js/detection.js"></script>
+</body>
+</html>
